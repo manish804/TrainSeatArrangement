@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { bookSeat, bookTrainSeat } from './utils/seatApi'
+import { error, success } from './Toast'
+import { bookTrainSeat } from './utils/seatApi'
 
 function Seat() {
-    const [inputSeatsNo, setInputSeatsNo] = useState({
-        noOfSeats: 0
-    })
+    const [inputSeatsNo, setInputSeatsNo] = useState({})
     const [AllSeats, setAllSeats] = useState([{ row1: [] }, { row2: [] }, { row3: [] }, { row4: [] }, { row5: [] }, { row6: [] }, { row7: [] }, { row8: [] }, { row9: [] }, { row10: [] }, { row11: [] }, { row12: [] }])
 
 
     useEffect(() => {
         (async () => {
-            const res = await fetch('http://localhost:5000/getAllSeats');
+            const res = await fetch('https://train-seat-arrangement.vercel.app/getAllSeats');
             const data = await res.json()
             const SeatList = Object.values(data.data)
 
@@ -22,7 +21,6 @@ function Seat() {
             }
 
             setAllSeats(array)
-            console.log(AllSeats);
         })()
 
     }, [AllSeats])
@@ -31,8 +29,23 @@ function Seat() {
     // handle form submit
     const bookSeats = async () => {
         console.log(inputSeatsNo)
-        const apiResponce = await bookTrainSeat(inputSeatsNo)
-        console.log("apiResponce", apiResponce);
+
+        if (inputSeatsNo.noOfSeats <= 7) {
+            const apiResponce = await bookTrainSeat(inputSeatsNo)
+            console.log("apiResponce", apiResponce);
+
+            if (apiResponce.status === 200) {
+                success(`${inputSeatsNo.noOfSeats} Seats Booked Successfully !!!`)
+            } else {
+                error(`${inputSeatsNo.noOfSeats} Seats not booked. Error !!!`)
+            }
+        } else {
+            error(`Please enter less than 7 seats.`)
+        }
+
+        setInputSeatsNo({
+            noOfSeats: ''
+        })
 
     }
 
@@ -43,29 +56,27 @@ function Seat() {
         })
     }
 
-    console.log(AllSeats);
-    console.log(AllSeats[0].row1[2]);
-
     return (
         <div>
             <div className="plane">
-                <h2 style={{color: 'White'}}>UNSTOP SEAT ARRANGEMENT</h2>
+                <h2>UNSTOP SEAT ARRANGEMENT</h2>
 
                 {/* form input */}
                 <div>
                     <input type="number"
                         id='input-box'
-                        placeholder="Enter no of seats"
+                        placeholder="Enter No of Seats"
                         onChange={(e) => handleChange(e)}
+                        value={inputSeatsNo.noOfSeats}
                         required />
                     <input className='submit-btn' type="submit" onClick={() => bookSeats()} value="Submit" />
                 </div>
 
                 {/* seat map */}
-                <h4>Seat Availability Status</h4>
+                <h4>Seat Availability Status (<span style={{ color: 'blue', fontSize: '16px' }}> <i class="fa-solid fa-circle"></i> Booked </span><span style={{ color: 'green', fontSize: '16px' }}><i class="fa-solid fa-circle"></i> Available </span>)</h4>
 
 
-                <ol className="cabin ">
+                <ol className='coach'>
                     <li className="row row-1">
                         <ol className="seats" type="A">
                             <li className='seat'>

@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -40,17 +41,23 @@
 
 /* My code */
 
+h2 {
+  color: rgb(92, 57, 12);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
-
-h4{
+h4 {
   margin: 10px;
   padding: 10px;
   font-size: 20px;
-  color: blue;
+  color: rgb(151, 110, 56);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -63,8 +70,8 @@ html {
   max-width: 70%;
 }
 
-#input-box{
-  width: 100%;
+#input-box {
+  width: 50%;
   height: 100%;
   border: 0;
   outline: none;
@@ -75,50 +82,24 @@ html {
   border-radius: 5px;
 }
 
-.submit-btn{
+.submit-btn {
   margin-top: 1px;
-  width: 100%;
+  width: 20%;
   height: 100%;
   border: #ccc solid 2px;
   border-radius: 5px;
   background: white;
   font-size: 20px;
   color: green;
-  padding: 10px 15px;
+  padding: 7.5px 10px;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
   background: green;
   color: white;
-}
-
-.exit {
-  position: relative;
-  height: 50px;
-}
-.exit:before, .exit:after {
-  content: "EXIT";
-  font-size: 14px;
-  line-height: 18px;
-  padding: 0px 2px;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  display: block;
-  position: absolute;
-  background: green;
-  color: white;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-.exit:before {
-  left: 0;
-}
-.exit:after {
-  right: 0;
-}
-
-.fuselage {
-  border-right: 5px solid #e22121;
-  border-left: 5px solid #d8d8d8;
+  border-radius: 20%;
 }
 
 ol {
@@ -127,11 +108,21 @@ ol {
   margin: 0;
 }
 
+.coach {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-left: 10rem;
+}
+
 .seats {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  width: 70%;
+  height: 100%;
 }
 
 .seat {
@@ -140,26 +131,31 @@ ol {
   padding: 5px;
   position: relative;
 }
+
 .seat:nth-child(3) {
   margin-right: 14.28571428571429%;
 }
+
 .seat input[type=checkbox] {
   position: absolute;
   opacity: 0;
 }
-.seat input[type=checkbox]:checked + label {
+
+.seat input[type=checkbox]:checked+label {
   background: #bada55;
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
-.seat input[type=checkbox]:disabled + label {
+
+.seat input[type=checkbox]:disabled+label {
   background: #dddddd;
   text-indent: -9999px;
   overflow: hidden;
 }
-.seat input[type=checkbox]:disabled + label:after {
+
+.seat input[type=checkbox]:disabled+label:after {
   content: "X";
   text-indent: 0;
   position: absolute;
@@ -167,13 +163,14 @@ ol {
   left: 50%;
   transform: translate(-50%, 0%);
 }
-.seat input[type=checkbox]:disabled + label:hover {
+
+.seat input[type=checkbox]:disabled+label:hover {
   box-shadow: none;
   cursor: not-allowed;
 }
 
-.booked{
-  background: red;
+.booked {
+  background: blue;
   display: block;
   position: relative;
   width: 100%;
@@ -181,13 +178,15 @@ ol {
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5rem;
+  color: white;
+  font-family: cursive;
   padding: 4px 0;
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
 
-.not-booked{
+.not-booked {
   background: green;
   display: block;
   position: relative;
@@ -196,11 +195,14 @@ ol {
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5rem;
+  color: rgb(46, 41, 41);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   padding: 4px 0;
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
+
 /* .seat label {
   display: block;
   position: relative;
@@ -238,61 +240,75 @@ ol {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
+
   30% {
     -webkit-transform: scale3d(1.25, 0.75, 1);
     transform: scale3d(1.25, 0.75, 1);
   }
+
   40% {
     -webkit-transform: scale3d(0.75, 1.25, 1);
     transform: scale3d(0.75, 1.25, 1);
   }
+
   50% {
     -webkit-transform: scale3d(1.15, 0.85, 1);
     transform: scale3d(1.15, 0.85, 1);
   }
+
   65% {
     -webkit-transform: scale3d(0.95, 1.05, 1);
     transform: scale3d(0.95, 1.05, 1);
   }
+
   75% {
     -webkit-transform: scale3d(1.05, 0.95, 1);
     transform: scale3d(1.05, 0.95, 1);
   }
+
   100% {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 }
+
 @keyframes rubberBand {
   0% {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
+
   30% {
     -webkit-transform: scale3d(1.25, 0.75, 1);
     transform: scale3d(1.25, 0.75, 1);
   }
+
   40% {
     -webkit-transform: scale3d(0.75, 1.25, 1);
     transform: scale3d(0.75, 1.25, 1);
   }
+
   50% {
     -webkit-transform: scale3d(1.15, 0.85, 1);
     transform: scale3d(1.15, 0.85, 1);
   }
+
   65% {
     -webkit-transform: scale3d(0.95, 1.05, 1);
     transform: scale3d(0.95, 1.05, 1);
   }
+
   75% {
     -webkit-transform: scale3d(1.05, 0.95, 1);
     transform: scale3d(1.05, 0.95, 1);
   }
+
   100% {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 }
+
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
