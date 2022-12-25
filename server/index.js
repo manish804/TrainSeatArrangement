@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 const port = 5000
 const app = express()
 const bodyParser = require('body-parser')
@@ -22,9 +23,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use('/', seatRoutes)
 // blog article route
 
-// app.get('/', (req,res) => {
-//     return res.json({message: "My blog App!!!"})
-// })
+app.get('/start', (req,res) => {
+    return res.json({message: "Train Seat Arrangement!!!"})
+})
 
 
 // listen our server on my port address

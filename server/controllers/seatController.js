@@ -16,7 +16,6 @@ module.exports.getAllSeats = async(req,res) => {
 
 // book seat
 module.exports.bookSeat = async function bookSeat(req, res) {
-  console.log("seates:" ,req.body);
 
   let noOfSeatsRequired = req.body.noOfSeats;
   let seatsOccupied = await getAllSeats();
@@ -87,7 +86,6 @@ module.exports.bookSeat = async function bookSeat(req, res) {
       if (noOfSeatsRequired == 0) {
         for (let i = 0; i < seatsFill.length; i++) {
           let { seat, seatsRow } = seatsFill[i];
-          console.log('b', seat, seatsRow);
           await insertSeat(seat, seatsRow);
         }
         seat_found = 1;
@@ -112,8 +110,6 @@ async function getAllSeats() {
     let seatsRow = temp['seatsRow'];
     resp[seatsRow].push(temp['seat']);
   }
-
-  console.log('a', resp);
   return resp;
 }
 
